@@ -4,7 +4,7 @@ import argparse
 import logging
 from datetime import datetime
 from typing import NamedTuple
-from py_tarpit.logging_config import listener_context
+from .logging_config import listener_context
 
 
 logger = logging.getLogger("asyncio")
