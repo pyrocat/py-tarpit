@@ -8,7 +8,7 @@ def get_listener():
     que = queue.Queue(-1)
     queue_handler = QueueHandler(que)
     handler = logging.StreamHandler()
-    file_handler = logging.FileHandler("../.log.txt", mode='a', encoding=None, delay=False, errors=None)
+    file_handler = logging.FileHandler(".log.txt", mode='a', encoding=None, delay=False, errors=None)
     root = logging.getLogger()
     root.addHandler(queue_handler)
     root.addHandler(file_handler)

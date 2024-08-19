@@ -37,7 +37,7 @@ async def handler(_reader, writer):
     _now = datetime.utcnow()
     logger.debug(f"New connection from: {addr} at {datetime.utcnow()}")
     logger.info(f"Total connections so far: {len(_tarpit_inhabitants)}")
-    print()
+    print(f"New connection from: {addr} at {datetime.utcnow()}")
 
     try:
         while True:
