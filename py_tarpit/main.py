@@ -4,7 +4,8 @@ import argparse
 import logging
 from datetime import datetime
 from typing import NamedTuple
-from .logging_config import listener_context
+
+from logging_config import listener_context
 
 
 logger = logging.getLogger("asyncio")
@@ -55,12 +56,19 @@ async def handler(_reader, writer):
                      f"spent in tar pit {most_tarred.time_spent} started "
                      f"from {most_tarred.when.strftime('%m/%d/%Y, %H:%M:%S')}")
 
+    except KeyboardInterrupt:
+        raise
+
 async def main():
     args = parse_arguments()
     server = await asyncio.start_server(handler, '0.0.0.0', args.port)
     with listener_context():
         async with server:
-            await server.serve_forever()
+            try:
+                await server.serve_forever()
+            except KeyboardInterrupt:
+                logger.info("Shutting down")
+                return
 
 
 if __name__ == "__main__":

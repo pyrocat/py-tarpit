@@ -3,9 +3,11 @@ version: '3.8'
 services:
   app:
     image: python:3.10-slim-bookworm
-    entrypoint: ['python', 'py_tarpit/main.py', "--port", "8080"]
+    entrypoint: ['python', '/opt/py_tarpit/main.py', "--port", "8080"]
     ports:
-      - "80:8080"
+      - "8084:8080"
+    volumes:
+      - "./py_tarpit:/opt/py_tarpit"
     logging:
       options:
         max-size: "128m"
