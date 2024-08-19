@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    image: python:3.10-slim-bookworm
+    entrypoint: ['python', 'py_tarpit/main.py', "--port", "8080"]
+    ports:
+      - "80:8080"
+    logging:
+      options:
+        max-size: "128m"
+        max-file: "10"
+
