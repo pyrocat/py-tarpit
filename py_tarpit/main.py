@@ -8,7 +8,7 @@ from typing import NamedTuple
 from logging_config import listener_context
 
 
-logger = logging.getLogger("asyncio")
+logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 INITIAL_HTTP_RESPONSE = b'HTTP/1.1 200 OK\r\n'
@@ -37,6 +37,7 @@ async def handler(_reader, writer):
     _now = datetime.utcnow()
     logger.debug(f"New connection from: {addr} at {datetime.utcnow()}")
     logger.info(f"Total connections so far: {len(_tarpit_inhabitants)}")
+    print()
 
     try:
         while True:
